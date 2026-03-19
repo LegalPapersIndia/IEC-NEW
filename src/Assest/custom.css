@@ -1,0 +1,231 @@
+﻿
+
+
+h5 {
+    font-size: 18px;
+    line-height: 28px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 25px;
+}
+
+.maxp {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    cursor: pointer;
+    /*font-size: 16px;*/
+    line-height: 22px;
+    display: inline-block;
+}
+
+span {
+    display: inline-block;
+}
+
+
+.bg-1 {
+    background: #13072d;
+}
+
+.bg-2 {
+    background: #f1f1f1;
+}
+
+.fa-phone {
+    transform: rotate(45deg);
+}
+
+/*-- procedure --*/
+.procedure h2 {
+    color: #fff;
+}
+
+.procedure .nobox .icon {
+    height: 120px;
+    width: 120px;
+    background: #f3983e;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .procedure .nobox .icon i {
+        /*color: #fff;
+    opacity: .7;*/
+        color: #fff;
+        font-size: 55px;
+    }
+
+.procedure .nobox h5 {
+    color: #fff;
+}
+
+.procedure .nobox:hover h5 {
+    color: #fff;
+}
+
+.procedure .nobox:hover i {
+    color: #fff;
+}
+/*-- benefits --*/
+.benefits ul li {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.benefits .nobox {
+    padding: 2px;
+    background: #f1f1f1;
+    border: 1px solid #fff;
+    box-shadow: 0 0 5px #f1f1f1;
+}
+
+    .benefits .nobox a {
+        position: relative;
+        background: #d2d2d2;
+        width: 100%;
+       padding: 10px 30px 10px 10px;
+        color: #150734;
+        font-weight: 700;
+		font-size: 16px;
+    }
+
+        .benefits .nobox a:after {
+            content: '+';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 30px;
+            color: #fff;
+            background: #1F456E !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefits .nobox a[aria-expanded="true"] {
+            background: #1F456E;
+            color: #fff !important;
+        }
+
+            .benefits .nobox a[aria-expanded="true"]:after {
+                color: #150734;
+                content: "-";
+                background: #ff9800;
+                -webkit-transition: 0.3s ease-in-out;
+                -moz-transition: 0.3s ease-in-out;
+                -ms-transition: 0.3s ease-in-out;
+                -o-transition: 0.3s ease-in-out;
+                transition: 0.3s ease-in-out;
+            }
+
+    .benefits .nobox .collapse {
+        background: #fff;
+        padding: 10px;
+    }
+
+
+.n_box ul li {
+    padding: 5px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #0000002e;
+}
+
+    .n_box ul li h5 {
+        margin-bottom: 2px;
+        color: #ec9427;
+        font-weight: 600;
+    }
+
+h4.modal-title {
+    width: 100%;
+}
+
+button.close {
+    font-size: 14px !important;
+    color: #000 !important;
+    width: 15%;
+    padding-top: 20px !important;
+}
+
+
+.input-box-width {
+ width:667px;
+}
+
+
+@media screen and (min-width: 300px) and (max-width: 960px) {
+    .input-box-width {
+        width: 300px;
+    }
+    #header1 .clean p {
+        font-size: 14px !important;
+        letter-spacing: 0;
+        font-weight: 700;
+        margin: 0;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    #header1 .clean .p1 {
+        font-size: 13px !important;
+        font-size: 11px;
+        letter-spacing: 0;
+        font-weight: 700;
+        margin: 0;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    #header1 .clean {
+        margin-top: 12px;
+        text-align: center;
+    }
+
+    .logo-img-mobile {
+        margin-top: 10px;
+        width: 123px;
+    }
+	
+	.swach {
+		margin-left: 118px;
+	}
+
+}
+
+
+/* Header*/
+
+#header1 .clean {
+    text-align: center;
+}
+    #header1 .clean p:nth-child(1) {
+        color: #ff9800;
+    }
+    #header1 .clean p {
+        font-size: 15px;
+        letter-spacing: 0;
+        font-weight: 700;
+        margin: 0;
+        text-transform: uppercase;
+        text-align:center;
+    }
+   
+
+.align-items-center {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+/*End Header*/
+
+ .HideInput {
+        display:none;
+    }

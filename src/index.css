@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee {
+  display: inline-block;
+  animation: marquee 20s linear infinite;   /* ← change this number to control speed */
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-container:hover .marquee {
+  animation-play-state: paused;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Header ke neeche section/form dab na jaye */
+:target {
+  scroll-margin-top: 180px;   /* adjust kar lena — header ki height ke hisaab se (TopBar + FullHeader ≈ 150-200px) */
+}

@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+/* Smooth scrolling for hash links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Header ke neeche form/section dab na jaye */
+:target {
+  scroll-margin-top: 180px;   /* adjust kar lena — header height ke hisaab se (usually 160-200px) */
+}
