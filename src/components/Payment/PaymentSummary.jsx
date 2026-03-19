@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Detail({ label, value }) {
   return (
@@ -13,6 +14,8 @@ export default function PaymentSummary() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     console.log("Payment page → reading sessionStorage");
 
@@ -22,7 +25,7 @@ export default function PaymentSummary() {
       setError("No submitted data found. Starting fresh...");
       setTimeout(() => {
         sessionStorage.removeItem("iecSubmittedData");
-        window.location.replace("/");
+        navigate("/");
       }, 2500);
       return;
     }
@@ -30,8 +33,7 @@ export default function PaymentSummary() {
     try {
       const parsed = JSON.parse(saved);
 
-      // Safety checks
-      const isTooOld = parsed._timestamp && (Date.now() - parsed._timestamp > 15 * 60 * 1000); // 15 minutes
+      const isTooOld = parsed._timestamp && Date.now() - parsed._timestamp > 30 * 60 * 1000; // 30 min
       if (isTooOld || !parsed.txtPanNo || !parsed.ddlApplicationType) {
         throw new Error("Session expired or incomplete data");
       }
@@ -42,25 +44,25 @@ export default function PaymentSummary() {
       console.error("Parse / validation error:", e);
       setError("Invalid or expired data found. Starting fresh...");
       sessionStorage.removeItem("iecSubmittedData");
-      setTimeout(() => window.location.replace("/"), 2500);
+      setTimeout(() => navigate("/"), 2500);
     }
-  }, []);
+  }, [navigate]);
 
   const handlePay = () => {
     window.location.href = "https://www.instamojo.com/@LegalPapersIndia/l52d2d917f393479baf14f1e829a0a65c/";
   };
 
   const handleEdit = () => {
-    sessionStorage.removeItem("iecSubmittedData");
-    window.location.replace("/");
+    sessionStorage.setItem("iecEditFromPayment", "true");
+    navigate("/"); // back to form
   };
 
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center p-10 bg-white rounded-2xl shadow-xl max-w-md">
+        <div className="text-center p-10 bg-white rounded-2xl shadow-xl max-w-md w-full">
           <p className="text-red-600 text-xl font-semibold mb-4">{error}</p>
-          <p className="text-gray-600">Redirecting in few seconds...</p>
+          <p className="text-gray-600">Redirecting in a few seconds...</p>
         </div>
       </div>
     );

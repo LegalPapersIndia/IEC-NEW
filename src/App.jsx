@@ -36,19 +36,14 @@ function GlobalMarquee() {
   );
 }
 
-// Floating back-to-top button with visibility control
+// Floating back-to-top button
 function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 400) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
+      setVisible(window.scrollY > 400);
     };
-
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
@@ -58,7 +53,7 @@ function BackToTop() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-orange-400"
+      className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-700 text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-orange-400"
       aria-label="Back to top"
     >
       <FaArrowUp size={22} />
@@ -66,14 +61,27 @@ function BackToTop() {
   );
 }
 
+// Scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Smooth scroll ya direct top — aap choice kar sakte ho
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Ya agar instant chahiye: window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function AppContent() {
   const location = useLocation();
   const isHome = location.pathname === '/';
 
-  // Show marquee on all pages except home
-  const showMarquee = !isHome;
+  // Marquee sirf home page pe
+  const showMarquee = isHome;
 
-  // Show floating navbar only on home
+  // Navbar sirf home pe (ya aap chahein to sab jagah dikha sakte ho)
   const showNavbar = isHome;
 
   return (
@@ -81,10 +89,10 @@ function AppContent() {
       {/* Always visible header */}
       <TopBar />
 
-      {/* Marquee – non-home pages */}
+      {/* Marquee – only on home */}
       {showMarquee && <GlobalMarquee />}
 
-      {/* Optional floating-style navbar on home */}
+      {/* Navbar – only on home (tum chaaho to sab pages pe dikha sakte ho) */}
       {showNavbar && (
         <Navbar
           navItems={[
@@ -108,6 +116,9 @@ function AppContent() {
           }}
         />
       )}
+
+      {/* ← Yeh important line hai – har route change pe scroll top */}
+      <ScrollToTop />
 
       <main className="flex-grow">
         <Routes>
@@ -163,13 +174,12 @@ function AppContent() {
 
       <MainFooter />
 
-      {/* Floating back-to-top */}
       <BackToTop />
     </div>
   );
 }
 
-// Small wrapper to keep consistent padding & max-width
+// Wrapper for consistent styling
 function PaymentSummaryWrapper() {
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-12 md:py-16">
